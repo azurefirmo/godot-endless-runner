@@ -1,0 +1,3 @@
+[gd_scene format=2]
+
+[node name="ScoreUI" type="Node2D"]
