@@ -1,3 +1,13 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/FGBG/Background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/FGBG/Foreground.tscn" type="PackedScene" id=2]
 
 [node name="Game" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+position = Vector2( -5.99323, -5.99323 )
+scale = Vector2( 1.00751, 1.00602 )
+
+[node name="Foreground" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1.49829, 504.93 )

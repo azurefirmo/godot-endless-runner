@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rock.png-9cdefd8dc7588c3c643e9e87c6be4814.stex"
+path="res://.import/rabbit0.png-848b228d8caafce153476ff4f1fd2bd2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/rock.png"
-dest_files=[ "res://.import/rock.png-9cdefd8dc7588c3c643e9e87c6be4814.stex" ]
+source_file="res://Assets/Sprites/Players/rabbit0.png"
+dest_files=[ "res://.import/rabbit0.png-848b228d8caafce153476ff4f1fd2bd2.stex" ]
 
 [params]
 

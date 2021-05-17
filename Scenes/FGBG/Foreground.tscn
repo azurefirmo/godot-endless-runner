@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Effectors/Backgrounds/ScrollingBackground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Backgrounds/ground.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float scroll_speed;
+
+void fragment() {
+	vec2 u = UV;
+	u.x += scroll_speed*TIME;
+	vec4 col = texture(TEXTURE, u);
+	COLOR = col;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/scroll_speed = 0.2
+
+[node name="Foreground" type="Node2D"]
+
+[node name="ScrollingBackground" parent="." instance=ExtResource( 1 )]
+material = SubResource( 2 )
+rect_scale = Vector2( 0.536164, 0.660141 )
+texture = ExtResource( 2 )
+stretch_mode = 2

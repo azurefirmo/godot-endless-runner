@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wood.png-a5c38f45b4f6bb006e5e8c6ec9c59f10.stex"
+path="res://.import/wood.png-87e9fe6f3610e20af98eb8917a8d880b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/Wood.png"
-dest_files=[ "res://.import/Wood.png-a5c38f45b4f6bb006e5e8c6ec9c59f10.stex" ]
+source_file="res://Assets/Sprites/Obstacles/wood.png"
+dest_files=[ "res://.import/wood.png-87e9fe6f3610e20af98eb8917a8d880b.stex" ]
 
 [params]
 
