@@ -1,48 +1,62 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var velocity = Vector2.ZERO
 
-export var jump_velocity = 600.0
+export var jump_velocity = 800.0
 export var gravity_scale = 20.0
 
-var can_jump = true
+var score = 0
+
+enum {
+	JUMP,
+	RUN,
+	IDLE
+}
+
+var state = RUN
 
 onready var animation = $AnimatedSprite
+onready var jump_sound = $JumpSound
+onready var death_sound = $DeathSound
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	animation.play("Run")
-	# pass # Replace with function body.
+	Signals.connect("rewardplayer", self, "rewardplayer")
+	Signals.connect("killplayer", self, "killplayer")
 
 func _physics_process(delta):
+	match state:
+		RUN:
+			animation.play("Run")
+		JUMP:
+			velocity = Vector2.ZERO
+			velocity.y -= jump_velocity
+			animation.play("Jump")
+			jump_sound.play()
+			state = IDLE
+		IDLE:
+			pass	
+	
 	velocity.y += gravity_scale
 	move_and_collide(velocity*delta)
 
 func _input(event):
-	if can_jump:
-		velocity = Vector2.ZERO
+	if state == RUN:
 		if event.is_action_pressed("Jump"):
-			velocity.y -= jump_velocity
-			animation.play("Jump")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+			state = JUMP
 
 func _on_Area2D_body_entered(body):
 	if body is StaticBody2D:
-		print("Player on Floor!")
-		can_jump = true
-		animation.play("Run")
+		state = RUN
 
 func _on_Area2D_body_exited(body):
 	if body is StaticBody2D:
-		can_jump = false
-		print("Player not on Floor!")
-		animation.play("Jump")
+		state = JUMP
+
+func rewardplayer(scoretoadd):
+	score+=scoretoadd
+	Signals.emit_signal("updatescore", score)
+
+func killplayer():
+	death_sound.play()
+	yield(death_sound,"finished")
+	queue_free()

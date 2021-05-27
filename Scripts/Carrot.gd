@@ -1,16 +1,18 @@
-extends Node2D
+extends "ScrollMovement.gd"
+
+onready var pick_sound = $PickupSound
+
+func _physics_process(delta):
+	move()
+
+func _on_Pickup_body_entered(body):
+	if body.name == "Player":
+		self.hide()
+		pick_sound.play()
+		Signals.emit_signal("rewardplayer", 1)
+		yield(pick_sound,"finished")
+		queue_free()
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()

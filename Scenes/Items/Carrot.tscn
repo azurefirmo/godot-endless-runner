@@ -1,3 +1,30 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Carrot.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Items/carrot0.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/reward.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 16 )
 
 [node name="Carrot" type="Node2D"]
+script = ExtResource( 1 )
+scroll_speed = 3.3
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="Pickup" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -18,6 +18,14 @@ config/name="bunny-runner"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Signals="*res://Scripts/Signals.gd"
+
+[display]
+
+window/handheld/orientation="portrait"
+
 [input]
 
 Jump={

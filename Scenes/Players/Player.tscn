@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Player/rabbit0.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Assets/Sprites/Player/rabbit6.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/Player/rabbit5.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Player/rabbit2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Audio/jump.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Audio/death.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -46,6 +48,12 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0.353561, 75.2462 )
 shape = SubResource( 3 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
